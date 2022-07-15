@@ -11,10 +11,10 @@ function Newscard(props) {
             setcat('sports')
         }
     }
- 
+     console.log(props.val);
  useEffect(()=>{
     async function fetchdata(){
-        let url=`https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=93fd33ad8f1a4f859fedd0ed8b49c7f1&page=${props.pageno}`
+        let url=`https://newsapi.org/v2/top-headlines?country=in&category=${cat}&apiKey=93fd33ad8f1a4f859fedd0ed8b49c7f1&page=${props.pageno}&pagesize=${props.postno}`
         let data= await fetch(url)
         let parsedata= await data.json()
         setarr(parsedata.articles)
@@ -22,7 +22,7 @@ function Newscard(props) {
     }
     fetchdata()
     valset()
- },[props.val,props.pageno])
+ },[props.val,props.pageno,props.postno])
     return (
         <div className='d-flex flex-wrap justify-content-evenly '>
             {arr.map((sam) => (
